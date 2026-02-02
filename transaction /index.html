@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+  <link rel="stylesheet" href="./css/index.css" />
+</head>
+
+<body>
+  <header>
+    <img src="./assets/1769019608397.jpg" />
+    <p class="menu">&#9776;</p>
+    <nav>
+      <p class="balance"></p>
+      <p>About</p>
+      <p>Service</p>
+      <p>Registering my business</p>
+      <p>Contacts</p>
+    </nav>
+  </header>
+  <main>
+    <section class="home">
+    <h1>Domtech Transactions.</h1>
+    <p>Fast and easier automated payments for goods and services at registered locations.</p>
+    </section>
+    <div class="videoContainer">
+      <video ></video>
+    </div>
+    <div class="loginRegister">
+      <button class="registerBtn">Register</button>
+      <button class="loginBtn">Log in</button>
+    </div>
+   <div class="best">
+     <p tabindex="1">No manual input of TILL or PAYBILL number.</p>
+     <p tabindex="1">Automatic bussiness detection using GPS.</p>
+     <p tabindex="1">Payment go directly to the owner of the Paybill or TILL, we only act as facilitators
+     </p>
+     <p tabindex="1">All payments are processed through M-PESA your trusted mobile money transfer platform.</p>
+     <p tabindex="1">Two clicks and you are done.</p>
+     <p tabindex="1">Stop losing time typing Paybill/Till numbers.</p>
+     <p tabindex="1">You love speed and accuracy try Domtech Transactions.</p>
+   </div>
+    
+  </main>
+  <footer>
+    <p>Tel: +254748543268</p>
+    <p>Email: jumadominic261@gmail.com</p>
+    <p class="copy">&copy; Copyright 2026. All rights reserved domtech transactions.</p>
+  </footer>
+  <script>
+  
+    const loginBtn = document.querySelector(".loginBtn");
+    const registerBtn = document.querySelector(".registerBtn");
+    const video = document.querySelector("video");
+    const menu = document.querySelector(".menu");
+    const nav = document.querySelector("nav");
+    
+    const buttons = [ loginBtn, registerBtn ];
+    const body = document.querySelector("body");
+    
+    
+    
+    
+    menu.onclick = () => {
+      nav.classList.toggle("showNav");
+    }
+    
+    window.onscroll = () => {
+      nav.classList.remove("showNav");
+    }
+    
+   /* setTimeout(() => {
+      video.play();
+    }, 3000)
+    */
+    loginBtn.onclick = () => {
+      window.location.replace("./forms/login.html");
+    }
+    
+    registerBtn.onclick = () => {
+      window.location.href = "./forms/register.html";
+    }
+    
+    const token = localStorage.getItem("token");
+    const email = localStorage.getItem("email");
+    
+    async function getStatus(email) {
+      body.style.display = "none";
+  try {
+    const res = await fetch("https://domtech-server-juf6.onrender.com/status", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email })
+    });
+    if (!res.ok) throw new Error(`HTTP error! Status: ${res.status}`);
+    const data = await res.json();
+    
+     if (data.status === "unverified") {
+        window.location.href = "./forms/otp.html";
+      } else {
+        getVerification();
+      } 
+    
+    
+    console.log(data);
+  } catch (err) {
+    console.error("Fetch failed:", err);
+  }
+}
+
+getStatus(email);
+    
+    
+    async function getVerification() {
+      
+      const res = await fetch("https://domtech-server-juf6.onrender.com/profile", {
+    method: "GET",
+    headers: {
+      "Authorization": `Bearer ${token}`
+    }
+  });
+      
+      const data = await res.json();
+      console.log(data);
+      if (data.status === "verified") {
+        window.location.replace("./dashboard.html");
+      } else if (data.status === "unverified") {
+        window.location.href = "./forms/otp.html";
+      } else {
+        body.style.display = "block";
+      }
+    }
+    
+  
+  
+  </script>
+</body>
+
+</html>

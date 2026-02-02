@@ -1,0 +1,98 @@
+const form = document.querySelector("form");
+    const name = document.querySelector("#name");
+    const phone = document.querySelector("#phone");
+    const password = document.querySelector("#password");
+    const confirm = document.querySelector("#confirm");
+    const email = document.querySelector("#email");
+    const showPass = document.querySelector(".showPass");
+    const crossPass = document.querySelector(".crossPass");
+    const showConfir = document.querySelector(".showConfir");
+    const crossConfir = document.querySelector(".crossConfir");
+    const inputs = [name, phone, password, confirm, email];
+    const submitBtn = document.querySelector("button[type='submit']");
+    
+    let togglePass = true;
+    let toggleConfir = true;
+    
+    showPass.onclick = () => {
+      crossPass.classList.toggle("none");
+      password.type = togglePass ? "text" : "password";
+      togglePass = !togglePass;
+    }
+    
+    showConfir.onclick = () => {
+      crossConfir.classList.toggle("none");
+    confirm.type = toggleConfir ? "text" : "password";
+      toggleConfir = !toggleConfir;
+    }
+    
+    const errorMsg = document.querySelector(".errorMsg");
+    
+   
+    inputs.forEach((input) => {
+      input.oninput = () => {
+        errorMsg.classList.remove("showError");
+      }
+    })
+    
+    
+  const regex = /^(07|01)\d{8}$/;
+  const regex2 = /[a-zA-Z]+ [a-zA-Z]+/;
+  
+    form.onsubmit = async (e) => {
+      e.preventDefault();
+      if (!regex2.test(name.value)) {
+        errorMsg.innerText = "Enter two names separated with space"
+        errorMsg.classList.add("showError")
+      } else if (!regex.test(phone.value)) {
+        errorMsg.innerText = "Your phone number should start with 07/01 and strictly equal to 10 digits.";
+        errorMsg.classList.add("showError")
+      } else if (password.value.length < 8) {
+        errorMsg.innerText = "Please choose a strong password with atleast 8 characters";
+        errorMsg.classList.add("showError")
+      } else if (password.value !== confirm.value) {
+        errorMsg.innerText = "Your passwords don't match"
+        errorMsg.classList.add("showError")
+      } else {
+        submitBtn.innerHTML = "";
+        const spin = document.createElement("span");
+        spin.setAttribute("class", "spin");
+        submitBtn.appendChild(spin);
+        
+        
+        
+       const res = await fetch("https://domtech-server-juf6.onrender.com/register", {
+    method: "POST",
+    headers: {
+      'Content-Type': "application/json"
+    },
+    body: JSON.stringify({
+      name: name.value,
+      phone: phone.value,
+      email: email.value,
+      password: password.value
+    })
+  });
+  
+  localStorage.setItem('email', email.value);
+  const feedback = await res.json();
+  console.log(feedback);
+  if ( feedback.status === "success" ) {
+  window.location.href = "/forms/otp.html";
+  } else if (feedback.status === "user exists") {
+    submitBtn.innerHTML = "";
+    submitBtn.innerText = "submit";
+    errorMsg.innerText = "The user with email already exists";
+    errorMsg.classList.add("showError");
+  } else {
+    errorMsg.innerText = "There was a problem creating an account";
+  }
+  
+      }
+      
+  
+      
+    }
+    
+    
+    

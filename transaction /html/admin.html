@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+      box-sizing: border-box;
+    }
+    
+    main {
+      position: relative;
+      border: 2px solid transparent;
+    }
+    .removeForm {
+      display: flex;
+      justify-content: flex-end;
+      padding: 2em 2em 0 0;
+    }
+    .remove {
+      font-size: 2rem;
+      border: none;
+    }
+    
+    .formParent {
+      position: absolute;
+      background-color: whitesmoke;
+      top: 0;
+      left: 4em;
+      right: 4em;
+    }
+    header {
+      font-size: 1.2rem;
+      padding: 0.5em;
+      background-color: green;
+    }
+    h1 {
+      text-align: center;
+    }
+    .add {
+      display: flex;
+      justify-content: flex-end;
+      font-size: 1.5rem;
+      padding: 1em;
+      margin-top: 5em;
+    }
+    
+    .add p {
+      border: 2px solid grey;
+      padding: 1.5em;
+      border-radius: 20px;
+      border-right: 10px solid green;
+    }
+    form {
+      font-size: 1.1rem;
+      display: flex;
+      flex-direction: column;
+      margin: 0 auto 1.5em auto;
+      padding: 1em;
+    }
+    label {
+      margin-top: 1em;
+    }
+    input {
+    font-size: 1.1rem;
+    padding: 0.3em;
+    }
+    input[type="submit"] {
+      margin-top: 2em;
+      border: none;
+    background-color: rgba(25, 20, 250, 0.7);
+    backdrop-filter: blur(30px);
+    box-shadow: 0 0 20px 0 black;
+      color: white;
+      cursor: pointer;
+    }
+    h2 {
+      text-align: center;
+      margin-top: 0.5em;
+    }
+        @media (orientation: landscape) {
+      form {
+        width: 50%;
+        margin: auto auto;
+      }
+    }
+    
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Admin dashboard</h1>
+  </header>
+  <main>
+    <div class="formParent"></div>
+    <div class="info"></div>
+    <div class="add">
+      <p class="add">Add location</p>
+    </div>
+  </main>
+  <script>
+  const addLocation = document.querySelector(".add");
+  const formParent = document.querySelector(".formParent");
+  
+  addLocation.onclick = () => {
+    formParent.innerHTML = `
+     <p class="removeForm"><button onclick=remove() class="remove">×</button></p>
+     <h2>Add location</h2>
+    <form>
+      <label for="locationName">Location name:</label>
+      <input type="text" id="locationName" name="locationName" required />
+      <label for="latitude">Latitude</label>
+      <input type="text" id="latitude" name="latitude" required />
+      <label for="longitude">Longitude:</label>
+      <input type="text" id="longitude" name="longitude" required />
+      <label for="shortCode">Short code:</label>
+      <input type="number" id="shortCode" name="shortCode" required />
+        <label for="transactionType">Transaction type</label>
+      <input type="text" id="transactionType" name="transactionType" required/>
+      <label for="accountRef">Account reference:</label>
+      <input type="text" id="accountRef" name="accountRefference" required/>
+      <label for="consumerKey">Consumer key:</label>
+      <input type="text" id="consumerKey" name="consumerKey" required />
+      <label for="consumerSecret">Consumer secret:</label>
+      <input type="text" id="consumerSecret" name="consumerSecret" required />
+      <label for="passKey">Pass key:</label>
+      <input type="text" id="passKey" name="passkey" required />
+      <input type="submit" />
+    </form>`
+    form();
+  }
+    
+    function remove() {
+      formParent.innerHTML = "";
+    }
+    
+    function form() {
+    const form = document.querySelector("form");
+    form.onsubmit = async (e) => {
+      e.preventDefault();
+      const name = document.querySelector("#locationName");
+      const latitude = document.querySelector("#latitude");
+      const longitude = document.querySelector("#longitude");
+      const shortCode = document.querySelector("#shortCode");
+      const transactionType = document.querySelector("#transactionType");
+      const accountRef = document.querySelector("#accountRef");
+      const consumerKey = document.querySelector("#consumerKey");
+      const consumerSecret = document.querySelector("#consumerSecret");
+      const passkey = document.querySelector("#passKey");
+    const inputs = [ name, latitude, longitude, shortCode, transactionType, accountRef, consumerKey, consumerSecret, passkey ];
+    const res = await fetch("https://domtech-server-juf6.onrender.com/add-location", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        name: name.value,
+        latitude: latitude.value,
+        longitude: longitude.value,
+        shortCode: shortCode.value,
+        transactionType: transactionType.value,
+        accountRefference: accountRef.value,
+        consumerKey: consumerKey.value,
+        consumerSecret: consumerSecret.value,
+        passkey: passkey.value
+      })
+    });
+    
+      const data = await res.json();
+      
+      if (data.status === "success") {
+        alert("success");
+        inputs.forEach((input) => {
+          input.value = "";
+        });
+      }
+      
+    }
+    }
+  </script>
+</body>
+
+</html>
