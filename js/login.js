@@ -32,7 +32,7 @@ const btn = document.querySelector("button");
     if (data.success) {
       localStorage.setItem("token", data.token);
       localStorage.setItem("number", data.phone);
-      window.location.replace("/dashboard.html");
+      window.location.replace("../html/dashboard.html");
     } else {
       error.innerText = data.message;
       error.classList.add("showError");

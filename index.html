@@ -125,7 +125,7 @@ getStatus(email);
       const data = await res.json();
       console.log(data);
       if (data.status === "verified") {
-        window.location.replace("./dashboard.html");
+        window.location.replace("./html/dashboard.html");
       } else if (data.status === "unverified") {
         window.location.href = "./forms/otp.html";
       } else {
