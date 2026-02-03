@@ -37,7 +37,7 @@ const form = document.querySelector("form");
     
     
   const regex = /^(07|01)\d{8}$/;
-  const regex2 = /[a-zA-Z]+ [a-zA-Z]+/;
+  const regex2 = /[a-zA-Z]+/;
   
     form.onsubmit = async (e) => {
       e.preventDefault();
