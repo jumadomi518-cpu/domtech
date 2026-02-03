@@ -87,7 +87,12 @@
     const email = localStorage.getItem("email");
     
     async function getStatus(email) {
-      body.style.display = "none";
+     
+       if (!email) {
+      body.style.display = "block";
+      return;
+        }
+
   try {
     const res = await fetch("https://domtech-server-juf6.onrender.com/status", {
       method: "POST",
@@ -99,8 +104,6 @@
     
      if (data.status === "unverified") {
         window.location.href = "./forms/otp.html";
-      } else if (data.message === "Email is required") {
-        body.style.display = "block";
       } else {
         getVerification();
       } 
