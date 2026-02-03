@@ -79,6 +79,8 @@
     background-color: whitesmoke;
     width: 100%;
     padding: 0.6em;
+    white-space: nowrap;
+    overflow: scroll;
   }
   i {
     color: green;
@@ -188,17 +190,6 @@
     width: 100%;
   }
  
-  
-  
-  
-  
-  
-
-  
-
-  
-
-
   .cancelAndSendBtn button {
     font-size: 1.1rem;
     padding: 0.5em;
@@ -211,6 +202,15 @@
   
   .navBtn:focus {
     border-bottom: 4px solid black;
+  }
+
+    @media (orientation: landscape) {
+    body {
+      width: 50%;
+      margin: auto auto;
+      
+    }
+   
   }
 
   
