@@ -80,7 +80,7 @@ async function getLocations() {
    for (const n of bussinessLocation) {
      const dis = getDistance(coords.latitude, coords.longitude, n.latitude, n.longitude);
      console.log(dis);
-     if (dis <= 100) {
+     if (dis <= 0.1) {
       const p = document.createElement("p");
       p.innerText = n.location_name;
       nearestLocations.appendChild(p);
