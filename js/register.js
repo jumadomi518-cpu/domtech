@@ -41,10 +41,7 @@ const form = document.querySelector("form");
   
     form.onsubmit = async (e) => {
       e.preventDefault();
-      if (!regex2.test(name.value)) {
-        errorMsg.innerText = "Enter two names separated with space"
-        errorMsg.classList.add("showError")
-      } else if (!regex.test(phone.value)) {
+       if (!regex.test(phone.value)) {
         errorMsg.innerText = "Your phone number should start with 07/01 and strictly equal to 10 digits.";
         errorMsg.classList.add("showError")
       } else if (password.value.length < 8) {
