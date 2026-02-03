@@ -78,7 +78,14 @@ const form = document.querySelector("form");
   const feedback = await res.json();
   console.log(feedback);
   if ( feedback.status === "success" ) {
+  inputs.forEach((input) => {
+    input.value = "";
+  });
+
+    submitBtn.innerHTML = "";
+    submitBtn.innerText = "submit";
   window.location.href = "/forms/otp.html";
+ 
   } else if (feedback.status === "user exists") {
     submitBtn.innerHTML = "";
     submitBtn.innerText = "submit";
