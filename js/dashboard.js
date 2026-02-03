@@ -23,7 +23,7 @@ async function getLocations() {
   
   }
   
-  function coordinates(maxAccuracy = 100) {
+  function coordinates(maxAccuracy = 10) {
   return new Promise((resolve, reject) => {
     const watchId = navigator.geolocation.watchPosition(
       (position) => {
