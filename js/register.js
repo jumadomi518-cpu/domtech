@@ -13,13 +13,13 @@ const form = document.querySelector("form");
     let toggleConfir = true;
     
     showPass.onclick = () => {
-      showPass.classList.toggle("showPassword");
+      showPass.classList.toggle("togglePassword");
       password.type = togglePass ? "text" : "password";
       togglePass = !togglePass;
     }
     
     showConfir.onclick = () => {
-      showConfir.classList.toggle("showPassword");
+      showConfir.classList.toggle("togglePassword");
     confirm.type = toggleConfir ? "text" : "password";
       toggleConfir = !toggleConfir;
     }
