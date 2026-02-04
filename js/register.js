@@ -5,9 +5,7 @@ const form = document.querySelector("form");
     const confirm = document.querySelector("#confirm");
     const email = document.querySelector("#email");
     const showPass = document.querySelector(".showPass");
-    const crossPass = document.querySelector(".crossPass");
     const showConfir = document.querySelector(".showConfir");
-    const crossConfir = document.querySelector(".crossConfir");
     const inputs = [name, phone, password, confirm, email];
     const submitBtn = document.querySelector("button[type='submit']");
     
@@ -15,13 +13,13 @@ const form = document.querySelector("form");
     let toggleConfir = true;
     
     showPass.onclick = () => {
-      crossPass.classList.toggle("none");
+      showPass.classList.toggle("showPassword");
       password.type = togglePass ? "text" : "password";
       togglePass = !togglePass;
     }
     
     showConfir.onclick = () => {
-      crossConfir.classList.toggle("none");
+      showConfir.classList.toggle("showPassword");
     confirm.type = toggleConfir ? "text" : "password";
       toggleConfir = !toggleConfir;
     }

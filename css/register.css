@@ -107,22 +107,14 @@ border: 2px solid red;
       border-left: none;
       width: 10%;
       background-color: transparent;
-      text-decoration: line-through;
-      font-size: 1rem;
-      position: relative;
+      font-size: 1.2rem;
+      overflow: scroll;
     }
   
-    
-    .crossConfir, .crossPass {
-      position: absolute;
-      display: inline-block;
-      z-index: 2;
-      background-color: black;
-      inset: 46% 25% 46% 25%;
-      transform: rotate();
-      transform-origin: left;
-    }
-    
+   .togglePassword {
+      box-shadow: 0 0 2px 2px black;
+    }    
+
     .login {
       font-size: 1rem;
       text-align: left;
