@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <meta charset="UTF-8">
+    <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>DomTech Transactions</title>
   <link rel="stylesheet" href="./css/index.css" />
@@ -11,141 +11,417 @@
 <link rel="shortcut icon" href="/favicon.ico" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 <link rel="manifest" href="/site.webmanifest" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: system-ui, sans-serif;
+    }
+    :root {
+      --color: rgba(0, 0, 0, 0.5);
+      --background: rgba(200, 100, 50, 0.2)
+    }
+    .notes {
+    font-size: 1.1rem;
+    margin: 0 1em 1em 1em;
+    padding: 0.5em 1em 1em 1em;
+    color: var(--color);
+    box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.4);
+    height: 80vh;
+    overflow: scroll;
+    }
+    .uploadBtnContainer {
+      margin: 1em;
+    display: flex;
+    justify-content: flex-end;
+    }
+    .uploadBtn {
+      font-size: 2rem;
+      height: 50px;
+      width: 50px;
+      color: var(--color);
+      border-radius: 10px;
+    }
+    
+    .aiBtn {
+      width: 60px;
+      height: 50px;
+      background-color: rgba(0, 0, 0, 0.4);
+      border: none;
+      color: white;
+      border-radius: 10px;
+    }
+    .aiBtn:active {
+      background-color: black;
+    }
+    .uploadBtn:active {
+      background-color: black;
+    }
+    .pdf_name {
+      padding: 0.5em;
+      background-color: var(--background);
+      box-shadow: 0 0 3px 0 green;
+      white-space: nowrap;
+      overflow: scroll;
+      margin: 1em;
+    }
+  .delContentRen {
+    display: grid;
+    grid-template-columns: 5% 95%;
+  }
+  .delRen {
+    margin: 1em 0 1em 0;
+    display: grid;
+    place-items: center;
+    position: relative;
+    border: 2px solid green;
+    border-radius: 5px;
+  }
+  span {
+    font-size: 1.7rem;
+  }
+  .float {
+    background-color: green;
+height: 0;
+width: 0;
+left: 110%;
+top: 50%;
+position: absolute;
+    transition: all 0.3s;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .height {
+    width: 100px;
+    height: 40px;
+  }
+  .del {
+    background-color: whitesmoke;
+    display: grid;
+    place-items: center;
+    margin: 0.4em;
+    white-space: nowrap;
+    overflow: scroll;
+    border-radius: 3px;
+  }
+  .pdf_name:focus {
+    background-color: papayawhip;
+  }
+  input[type="text"] {
+    margin: 1em 1em 0.5em 0.7em;
+    font-size: 1rem;
+    padding: 0.5em 0.5em 0 0.5em;
+    border: none;
+    outline: none;
+    width: 94.5%;
+    opacity: 0.7;
+  }
+  
+  footer {
+    background-color: black;
+    color: white;
+    font-size: 1.2rem;
+    display: grid;
+    place-items: center;
+    text-align: center;
+  }
+  </style>
 </head>
 
 <body>
-  <header>
-   <div class="imgParent">
-    <img src="./assets/1769019608397.jpg" />
-    </div>   
- <p class="menu">&#9776;</p>
-    <nav>
-      <p class="balance"></p>
-      <p>About</p>
-      <p>Service</p>
-      <p>Registering my business</p>
-      <p>Contacts</p>
-    </nav>
-  </header>
   <main>
-    <section class="home">
-    <h1>Domtech Transactions.</h1>
-    <p>Fast and easier automated payments for goods and services at registered locations.</p>
-    </section>
-    <div class="videoContainer">
-      <video ></video>
+    <input type="text" placeholder="search..."/>
+    <div class="notes">
     </div>
-    <div class="loginRegister">
-      <button class="registerBtn">Register</button>
-      <button class="loginBtn">Log in</button>
-    </div>
-   <div class="best">
-     <p tabindex="1">No manual input of PAYBILL number.</p>
-     <p tabindex="1">Payment go directly to the owner of the Paybill, we only act as facilitators through using M-PESA API.
-     </p>
-     <p tabindex="1">All payments are processed through M-PESA your trusted mobile money transfer platform.</p>
-     <p tabindex="1">2-4  clicks and you are done.</p>
-     <p tabindex="1">Stop losing time typing Paybill/Till numbers.</p>
-     <p tabindex="1">You love speed and accuracy try Domtech Transactions.</p>
-   </div>
-    
+  <div class="uploadBtnContainer">
+      <button class="uploadBtn">&plus;</button>
+      </div>
+  
+    <input type="file" accept="application/pdf" multiple hidden />
   </main>
   <footer>
-    <p>Tel: +254748543268</p>
-    <p>Email: jumadominic261@gmail.com</p>
-    <p class="copy">&copy; Copyright 2026. All rights reserved domtech transactions.</p>
+    <p>&copy; Copyright 2026. All rights reserved Alupe coding/programming.</p>
   </footer>
   <script>
-  
-    const loginBtn = document.querySelector(".loginBtn");
-    const registerBtn = document.querySelector(".registerBtn");
-    const video = document.querySelector("video");
-    const menu = document.querySelector(".menu");
-    const nav = document.querySelector("nav");
-    
-    const buttons = [ loginBtn, registerBtn ];
+    const notes = document.querySelector(".notes");
+    const input = document.querySelector("input[type='file']");
+    const upload_Btn = document.querySelector(".uploadBtn");
     const body = document.querySelector("body");
+  const search = document.querySelector("input[type='text']");
     
     
     
+   
     
-    menu.onclick = () => {
-      nav.classList.toggle("showNav");
+    
+    
+  let control = false;
+    
+    
+    upload_Btn.onclick = (e) => {
+      input.click();
     }
     
-    window.onscroll = () => {
-      nav.classList.remove("showNav");
+    
+    const request = indexedDB.open("FilesDataBase", 1);
+    request.onupgradeneeded = (e) => {
+      const db = e.target.result;
+      db.createObjectStore("files", {keyPath: "id"});
     }
     
-   /* setTimeout(() => {
-      video.play();
-    }, 3000)
-    */
-    loginBtn.onclick = () => {
-      window.location.replace("./forms/login.html");
+    request.onsuccess = (e) => {
+      const db = e.target.result;
+      console.log("FilesDataBase opened successfully");
+    }
+
+    
+    function addPdfs(pdfs) {
+    const request = indexedDB.open("FilesDataBase", 1);
+    request.onsuccess = (e) => {
+      const db = e.target.result;
+      const tx = db.transaction("files", "readwrite");
+      const store = tx.objectStore("files");
+      const addReq = store.put(pdfs);
+      addReq.onsuccess = () => {
+        console.log("data added successfully");
+      }
+    }
     }
     
-    registerBtn.onclick = () => {
-      window.location.href = "./forms/register.html";
-    }
+    function getFiles() {
     
-    const token = localStorage.getItem("token");
-    const email = localStorage.getItem("email");
-    
-    async function getStatus(email) {
-     
-       if (!email) {
-      body.style.display = "block";
-      return;
+      notes.innerHTML = "";
+      notes.style.placeItems = "";
+      notes.style.display = "block";
+      const request = indexedDB.open("FilesDataBase", 1);
+      request.onsuccess = (e) => {
+        const db = e.target.result;
+        const tx = db.transaction("files", "readonly");
+        const store = tx.objectStore("files");
+        store.openCursor().onsuccess = (e) => {
+          const cursor = e.target.result;
+          if (cursor) {
+            const delContentRen = document.createElement("div");
+            delContentRen.setAttribute("class", "delContentRen");
+             const delRen = document.createElement("div");
+            delRen.setAttribute("class", "delRen");
+            delRen.setAttribute("tabIndex", "-1");
+            const span = document.createElement("span");
+            span.innerText = "⋮";
+            delRen.appendChild(span);
+            
+            const divOne = document.createElement("div");
+            divOne.setAttribute("class", "float");
+              delRen.appendChild(divOne);
+              
+              const del = document.createElement("p");
+              del.setAttribute("class", "del");
+              del.innerText = "Delete";
+              divOne.appendChild(del);
+              delRen.onfocus = () => {
+                delRen.onclick = () => {
+                  divOne.classList.toggle("height");
+                  control = true;
+                }
+                
+      
+              }
+              
+              delRen.onblur = () => {
+                divOne.classList.remove("height");
+              }
+      
+      
+      
+            delContentRen.appendChild(delRen);
+            const content = document.createElement("p");
+            content.setAttribute("tabIndex", "0");
+            content.setAttribute("class", "pdf_name");
+            content.innerText = cursor.value.id;
+            
+            divOne.onclick = (e) => {
+        e.stopPropagation();
+      }
+            del.onclick = (e) => {
+              e.stopPropagation();
+              const before = confirm("The file will be removed from the list.");
+              if (before) deleteFile(content.innerText);
+            }
+            delContentRen.appendChild(content);
+            const url = URL.createObjectURL(cursor.value.name);
+            content.onclick = () => {
+                if (control) {
+                  setTimeout(() => {
+                    window.open(url);
+                  }, 300)
+                } else {
+                  window.open(url);
+                }
+            }
+            notes.appendChild(delContentRen);
+            cursor.continue();
+          }
+          
         }
-
-  try {
-    const res = await fetch("https://domtech-server-juf6.onrender.com/status", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email })
-    });
-    if (!res.ok) throw new Error(`HTTP error! Status: ${res.status}`);
-    const data = await res.json();
-    
-     if (data.status === "unverified") {
-        window.location.href = "./forms/otp.html";
-      } else {
-        getVerification();
-      } 
-    
-    
-    console.log(data);
-  } catch (err) {
-    console.error("Fetch failed:", err);
-  }
-}
-
-getStatus(email);
-    
-    
-    async function getVerification() {
-      
-      const res = await fetch("https://domtech-server-juf6.onrender.com/profile", {
-    method: "GET",
-    headers: {
-      "Authorization": `Bearer ${token}`
+        
+      }
     }
-  });
-      
-      const data = await res.json();
-      console.log(data);
-      if (data.status === "verified") {
-        window.location.replace("./html/dashboard.html");
-      } else if (data.status === "unverified") {
-        window.location.href = "./forms/otp.html";
-      } else {
-        body.style.display = "block";
+    
+     function files() {
+      try {
+        input.onchange = (e) => {
+        const files = input.files;
+        const promises = Array.from(files).map(file => addPdfs({id: file.name, name: file}));
+         getFiles()
+        }
+      } catch(error) {
+        console.error(error.message);
+      } finally {
+        console.log("operation completed");
+      }
+    }
+    
+    function clearDataBase() {
+      const request = indexedDB.open("FilesDataBase", 1);
+      request.onsuccess = (e) => {
+        const db = e.target.result;
+        const tx = db.transaction("files", "readwrite");
+        const store = tx.objectStore("files");
+        const clearReq = store.clear();
+        clearReq.onsuccess = () => {
+          getFiles();
+          console.log("all data cleared");
+        }
+      }
+    }
+    
+    function deleteFile(name) {
+      const request = indexedDB.open("FilesDataBase");
+      request.onsuccess = (e) => {
+        const db = e.target.result;
+        const tx = db.transaction("files", "readwrite");
+        const store = tx.objectStore("files");
+        const deleteReq = store.delete(name);
+        deleteReq.onsuccess = () => {
+          console.log("file deleted successfully");
+          getFiles();
+          text();
+        }
       }
     }
     
   
   
+  search.oninput = () => {
+    notes.innerHTML = "";
+    text();
+  const request = indexedDB.open("FilesDataBase", 1);
+  request.onsuccess = (e) => {
+    const db = e.target.result;
+    const tx = db.transaction("files", "readonly");
+    const store = tx.objectStore("files");
+    store.openCursor().onsuccess = (e) => {
+      const cursor = e.target.result;
+      
+      if (cursor) {
+        
+      if (cursor.value.id.toLowerCase().includes(search.value.toLowerCase())) {
+        
+        
+        const delContentRen = document.createElement("div");
+            delContentRen.setAttribute("class", "delContentRen");
+             const delRen = document.createElement("div");
+             
+            delRen.setAttribute("class", "delRen");
+            delRen.setAttribute("tabIndex", "-1");
+            const span = document.createElement("span");
+            span.innerText = "⋮";
+            delRen.appendChild(span);
+            
+            const divOne = document.createElement("div");
+            divOne.setAttribute("class", "float");
+              delRen.appendChild(divOne);
+              
+              const del = document.createElement("p");
+              del.setAttribute("class", "del");
+              del.innerText = "Delete";
+              divOne.appendChild(del);
+              delRen.onfocus = () => {
+                delRen.onclick = () => {
+                  divOne.classList.toggle("height");
+                  control = true;
+                } 
+                
+      
+              }
+              
+              delRen.onblur = () => {
+                divOne.classList.remove("height");
+              }
+      
+      
+      
+            delContentRen.appendChild(delRen);
+            const content = document.createElement("p");
+            content.setAttribute("tabIndex", "0");
+            content.setAttribute("class", "pdf_name");
+            content.innerText = cursor.value.id;
+            
+            divOne.onclick = (e) => {
+        e.stopPropagation();
+      }
+            del.onclick = (e) => {
+              e.stopPropagation();
+              const before = confirm("The file will be removed from the list.");
+              if (before) deleteFile(content.innerText);
+            }
+            delContentRen.appendChild(content);
+            const url = URL.createObjectURL(cursor.value.name);
+            content.onclick = () => {
+                if (control) {
+                  setTimeout(() => {
+                    window.open(url);
+                  }, 300)
+                } else {
+                  window.open(url);
+                }
+            }
+            
+          
+            notes.appendChild(delContentRen);
+        
+        
+      }
+    cursor.continue();
+      }
+    }
+  }
+}
+    
+    
+    function text() {
+      const request = indexedDB.open("FilesDataBase", 1);
+      request.onsuccess = (e) => {
+        const db = e.target.result;
+        const tx = db.transaction("files", "readonly");
+        const store = tx.objectStore("files");
+        const getReq = store.getAll();
+        getReq.onsuccess = () => {
+        if (getReq.result.length === 0) {
+        const p = document.createElement("p");
+        p.innerText = "No files, tap the plus button to upload.";
+        notes.style.display = "grid";
+        notes.style.placeItems = "center";
+        notes.appendChild(p);
+        }
+        }
+      }
+      
+    }
+ text()
+files();
+getFiles();
   </script>
 </body>
 
