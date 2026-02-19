@@ -393,10 +393,10 @@ if ("serviceWorker" in navigator) {
             content.onclick = () => {
                 if (control) {
                   setTimeout(() => {
-                    window.open(url);
+                    window.open(url, "_blank");
                   }, 300)
                 } else {
-                  window.open(url);
+                  window.open(url, "_blank");
                 }
             }
             
