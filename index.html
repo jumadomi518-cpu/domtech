@@ -126,7 +126,7 @@ position: absolute;
     place-items: center;
     text-align: center;
     width: 100%;
-   position: fixed;
+   position: relative;
     bottom: 0;
   }
   </style>
@@ -147,6 +147,15 @@ position: absolute;
     <p>&copy; Copyright 2026. All rights reserved Alupe coding/programming.</p>
   </footer>
   <script>
+
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("/sw.js")
+      .then(reg => console.log("SW registered:", reg.scope))
+      .catch(err => console.log("SW registration failed:", err));
+  });
+}
+
     const notes = document.querySelector(".notes");
     const input = document.querySelector("input[type='file']");
     const upload_Btn = document.querySelector(".uploadBtn");
